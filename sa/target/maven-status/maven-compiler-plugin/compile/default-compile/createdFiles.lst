@@ -1,0 +1,5 @@
+com/sa/RestApi.class
+com/sa/MemoryDB.class
+com/sa/SensorHelper.class
+com/sa/TemperatureSensor.class
+com/sa/HumiditySensor.class
