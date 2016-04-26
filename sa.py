@@ -12,15 +12,20 @@ uri_get = 'http://127.0.0.1:8080/sa/rest/sensors/'
 uri_post = 'http://127.0.0.1:8080/sa/rest/sensors/add/'
 
 
+def req(uri):
+    print("\nurl: {}\n".format(uri))
+    res = requests.post(uri)
+    if res.ok:
+        return res.json()
+    return res.status_code, res.reason
+
+
 def GET(type_sen, id_sen):
     uri = uri_get + type_sen
     if id_sen is not None:
         uri = uri + '/' + str(id_sen)
     print("\nurl: {}\n".format(uri))
-    res = requests.get(uri)
-    if res.ok:
-        return res.json()
-    return res.status_code, res.reason
+    req(uri)
 
 
 def POST(type_sen, id_sen):
@@ -28,11 +33,7 @@ def POST(type_sen, id_sen):
         print("id argument is not needed when adding sensor")
         exit()
     uri = uri_post + type_sen
-    print("\nurl: {}\n".format(uri))
-    res = requests.post(uri)
-    if res.ok:
-        return res.json()
-    return res.status_code, res.reason
+    req(uri)
 
 
 parser = argparse.ArgumentParser()
